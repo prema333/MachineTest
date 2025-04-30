@@ -1,15 +1,8 @@
 import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {Route, Routes } from "react-router-dom";
 
 import Login from "./login";
 import HomeScreen from "../Screens/homeScreen";
-
-const PrivateRoute = ({ children }) => {
-	const { savedData } = useSelector((state) => state.auth);
-
-	return savedData?.email ? children : <Navigate to="/" />;
-};
 
 function AppRoutes() {
 
@@ -19,9 +12,7 @@ function AppRoutes() {
 			<Route
 				path="/home"
 				element={
-					// <PrivateRoute>
 						<HomeScreen />
-					// </PrivateRoute>
 				}
 			/>
 		</Routes>
