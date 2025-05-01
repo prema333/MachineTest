@@ -30,7 +30,7 @@ const Login = () => {
 				dispatch(setErrors({ password: "Please enter password correctly" }));
 				document.getElementById("password").focus();
 			} else if (Object.values(errors)?.every((el) => !el)) {
-				dispatch(setSavedData(loginData))
+				dispatch(setSavedData(loginData));
 				navigate("/home");
 			}
 		},
@@ -41,7 +41,6 @@ const Login = () => {
 		<>
 			<div className="container-fluid vh-100">
 				<div className="row h-100">
-					{/* LEFT: Sign-in Form (start at left edge) */}
 					<div className="col-md-6 d-flex align-items-center justify-content-start bg-white">
 						<div
 							className="w-100 px-4 text-start"
@@ -63,7 +62,6 @@ const Login = () => {
 										onChange={handleChange}
 										value={loginData?.email}
 										id="email"
-										//  required
 									/>
 								</div>
 								{errors?.email && <p className="text-danger">{errors.email}</p>}
@@ -77,13 +75,23 @@ const Login = () => {
 										id="password"
 										onChange={handleChange}
 										value={loginData?.password}
-										//  required
 									/>
 								</div>
 								{errors?.password && (
-									<p className="text-danger">{errors.password}</p>
+									<p className="text-danger mb-0 d-flex align-items-center gap-1">
+										{errors.password}
+										<span
+											className="d-inline-flex align-items-center justify-content-center"
+											tabIndex="0"
+											data-bs-toggle="tooltip"
+											title="Password must be 8–20 characters, including uppercase, number, and special character."
+											style={{ height: "1rem", width: "1rem" }}>
+											<i
+												className="bi bi-info-circle-fill"
+												style={{ fontSize: "1rem" }}></i>
+										</span>
+									</p>
 								)}
-
 								<div className="form-check mb-3">
 									<input
 										type="checkbox"
@@ -111,7 +119,6 @@ const Login = () => {
 						</div>
 					</div>
 
-					{/* RIGHT: Illustration */}
 					<div className="col-md-6 d-none d-md-flex">
 						<img
 							src={womenSvg}

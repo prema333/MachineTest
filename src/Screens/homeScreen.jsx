@@ -13,12 +13,11 @@ import FilterTabs from "../CommonComponents/filterTabs";
 import { dummyData } from "../Constant/constant";
 import SocialLinks from "../CommonComponents/socialLinks";
 
-
 const HomeScreen = () => {
 	const dispatch = useDispatch();
 	const { details, visible, loading } = useSelector((state) => state.auth);
 
-	const handleVisibleData =() => {
+	const handleVisibleData = () => {
 		dispatch(setLoading({ visibleLoading: true }));
 		setTimeout(() => {
 			dispatch(setVisible(parseInt(visible) + 20));
@@ -64,13 +63,12 @@ const HomeScreen = () => {
 							</div>
 						) : (
 							<>
-								<div className="row align-items-stretch">
+								<div className="row mt-5">
 									<div className="col-md-10 mb-3">
 										<div
 											id="carouselExampleIndicators"
 											className="carousel slide"
 											data-bs-ride="carousel">
-											{/* Carousel Indicators */}
 											<div className="carousel-indicators">
 												{dummyData?.map((el, index) => (
 													<button
@@ -84,7 +82,6 @@ const HomeScreen = () => {
 												))}
 											</div>
 
-											{/* Carousel Items */}
 											<div className="carousel-inner">
 												{dummyData?.map((el, index) => (
 													<div
@@ -102,7 +99,6 @@ const HomeScreen = () => {
 												))}
 											</div>
 
-											{/* Carousel Controls */}
 											<button
 												className="carousel-control-prev"
 												type="button"
@@ -126,12 +122,12 @@ const HomeScreen = () => {
 										</div>
 									</div>
 
-									{/* Side Image Box */}
+									{/* Side image box */}
 									<div className="col-md-2 mb-3">
 										<img
 											src="https://i.pinimg.com/originals/a7/10/3d/a7103d8c0d9b12f0ed47c3ddd94e1cc3.jpg"
 											alt="Side"
-											className="img-fluid rounded h-100"
+											className="img-fluid rounded h-100 w-100"
 											style={{ objectFit: "cover" }}
 										/>
 									</div>
@@ -141,24 +137,33 @@ const HomeScreen = () => {
 									{details?.slice(0, visible)?.map((country, index) => (
 										<div className="col-md-6 mb-4" key={index}>
 											<div
-												className="card shadow-sm h-60 w-100"
-												style={{ height: 100 }}>
-												<div className="card-body d-flex align-items-center">
+												className="card shadow-sm mx-auto-border"
+												style={{
+													maxWidth: "100%",
+													width: "90%",
+													minHeight: "80px",
+												}}>
+												<div className="card-body d-flex flex-column flex-sm-row align-items-center p-2">
 													<img
 														src={country?.flag}
 														alt={country.name}
-														className="me-4 rounded"
+														className="me-sm-3 mb-2 mb-sm-0 rounded"
 														style={{
-															width: "50px",
-															height: "50px",
+															width: "40px",
+															height: "40px",
 															objectFit: "cover",
+															flexShrink: 0,
 														}}
 													/>
-													<div>
-														<h6 className="card-title mb-0 fw-bold">
+													<div className="text-center text-sm-start flex-grow-1">
+														<h6
+															className="card-title mb-0 fw-bold"
+															style={{ fontSize: "0.9rem" }}>
 															{country.name}
 														</h6>
-														<p className="text-start">{country.region}</p>
+														<p className="mb-0" style={{ fontSize: "0.8rem" }}>
+															{country.region}
+														</p>
 													</div>
 												</div>
 											</div>
