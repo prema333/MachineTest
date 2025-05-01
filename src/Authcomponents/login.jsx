@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +11,7 @@ import { isValidate, isValidEmail } from "../Constant/constant";
 
 const Login = () => {
 	const { loginData, errors } = useSelector((state) => state.auth);
+	const [showPassword, setShowPassword] = useState(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -18,6 +19,10 @@ const Login = () => {
 		const { id, value } = event.target;
 		dispatch(setLoginData({ [id]: value }));
 		dispatch(setErrors({ [id]: "" }));
+	};
+
+	const togglePassword = () => {
+		setShowPassword((prev) => !prev);
 	};
 
 	const handleLoginSubmit = useCallback(
@@ -66,9 +71,9 @@ const Login = () => {
 								</div>
 								{errors?.email && <p className="text-danger">{errors.email}</p>}
 
-								<div className="mb-3">
+								<div className="mb-3 position-relative">
 									<input
-										type="password"
+										type={showPassword ? "text" : "password"}
 										className="form-control"
 										placeholder="Password"
 										name="password"
@@ -76,6 +81,17 @@ const Login = () => {
 										onChange={handleChange}
 										value={loginData?.password}
 									/>
+									<i
+										className={`bi ${showPassword ? "bi-eye" : "bi-eye-slash"}`}
+										onClick={togglePassword}
+										style={{
+											position: "absolute",
+											right: "10px",
+											top: "50%",
+											transform: "translateY(-50%)",
+											cursor: "pointer",
+											color: "#6c757d",
+										}}></i>
 								</div>
 								{errors?.password && (
 									<p className="text-danger mb-0 d-flex align-items-center gap-1">

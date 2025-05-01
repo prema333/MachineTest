@@ -79,27 +79,44 @@ const FilterTabs = () => {
 				</ul>
 			) : (
 				<>
-					<div class="btn-group">
-						<button
-							type="button"
-							data-bs-toggle="dropdown"
-							aria-expanded="false">
-							<i class="bi bi-list"></i>
-						</button>
-						<ul className="dropdown-menu">
+					<button
+						className="btn btn-outline-secondary"
+						type="button"
+						data-bs-toggle="offcanvas"
+						data-bs-target="#tabsOffcanvas"
+						aria-controls="tabsOffcanvas">
+						<i class="bi bi-list"></i>
+					</button>
+					<div
+						className="offcanvas offcanvas-end"
+						tabIndex="-1"
+						id="tabsOffcanvas"
+						aria-labelledby="tabsOffcanvasLabel">
+						<div className="offcanvas-header">
+							<h5 className="offcanvas-title" id="tabsOffcanvasLabel">
+								Select Country
+							</h5>
+							<button
+								type="button"
+								className="btn-close"
+								data-bs-dismiss="offcanvas"
+								aria-label="Close"></button>
+						</div>
+						<div className="offcanvas-body">
 							{uniqueDuplicates?.map((el, index) => (
-								<li key={index}>
-									<button
-										className={`dropdown-item ${
-											activeTab === el ? "active" : ""
-										}`}
-										type="button"
-										onClick={() => handleTabs(el)}>
-										{el}
-									</button>
-								</li>
+								<button
+									key={index}
+									className={`btn w-100 text-start mb-2 ${
+										activeTab === el ? "btn-success" : "btn-outline-success"
+									}`}
+									onClick={() => {
+										handleTabs(el);
+										document.querySelector("#tabsOffcanvas .btn-close").click(); // Close the offcanvas
+									}}>
+									{el}
+								</button>
 							))}
-						</ul>
+						</div>
 					</div>
 				</>
 			)}
