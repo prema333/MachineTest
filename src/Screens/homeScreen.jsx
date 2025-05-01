@@ -121,8 +121,6 @@ const HomeScreen = () => {
 											</button>
 										</div>
 									</div>
-
-									{/* Side image box */}
 									<div className="col-md-2 mb-3">
 										<img
 											src="https://i.pinimg.com/originals/a7/10/3d/a7103d8c0d9b12f0ed47c3ddd94e1cc3.jpg"
@@ -135,19 +133,18 @@ const HomeScreen = () => {
 
 								<div className="row mt-5">
 									{details?.slice(0, visible)?.map((country, index) => (
-										<div className="col-md-6 mb-4" key={index}>
+										<div className="col-12 col-md-6 mb-4" key={index}>
 											<div
-												className="card shadow-sm mx-auto-border"
+												className="card shadow-sm"
 												style={{
-													maxWidth: "100%",
-													width: "90%",
-													minHeight: "80px",
+													width: "100%",
+													minHeight: "60px",
 												}}>
-												<div className="card-body d-flex flex-column flex-sm-row align-items-center p-2">
+												<div className="card-body d-flex align-items-center p-2">
 													<img
 														src={country?.flag}
 														alt={country.name}
-														className="me-sm-3 mb-2 mb-sm-0 rounded"
+														className="me-3 rounded"
 														style={{
 															width: "40px",
 															height: "40px",
@@ -155,7 +152,7 @@ const HomeScreen = () => {
 															flexShrink: 0,
 														}}
 													/>
-													<div className="text-center text-sm-start flex-grow-1">
+													<div className="text-start flex-grow-1">
 														<h6
 															className="card-title mb-0 fw-bold"
 															style={{ fontSize: "0.9rem" }}>
